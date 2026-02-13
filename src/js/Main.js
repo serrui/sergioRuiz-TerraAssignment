@@ -23,6 +23,7 @@ import Collapsify from "@terrahq/collapsify";
 
 class Main{
     constructor(){
+        
         this.init();
         this.events()
     }

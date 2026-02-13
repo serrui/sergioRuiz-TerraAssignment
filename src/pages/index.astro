@@ -68,28 +68,21 @@ const cards = [
 				</div>
 			</div>
 		</div>
-		<div class="f--row f--gap-c js--cards-container">
-			{cards.map((card) => (
-				<div class="f--col-6">
-					<CardA title={card.title} subtitle={card.subtitle} />
-				</div>
-			))}
 
-			<div class="f--col-12">
-				<CtaB />
-			</div>
+		<div class="js--message-container u--mt-4 u--mb-4"></div>
 
-			{cards.map((card) => (
-				<div class="f--col-6">
-					<CardA title={card.title} subtitle={card.subtitle} />
-				</div>
-			))}
-
-		</div>
+		<div class="f--row f--gap-c js--cards-container"></div>
 
 		<div class="f--row">
 			<div class="f--col-12 u--text-align-center u--mt-5">
-				<button class="c--btn-a js--load-more">Load More</button>
+				<button class="c--btn-a js--load-more" style="display: none;">Load More</button>
+				<button class="c--btn-a js--hide-results" style="display: none;">Hide</button>
+			</div>
+		</div>
+
+		<div class="f--row u--mt-10">
+			<div class="f--col-12">
+				<CtaB />
 			</div>
 		</div>
 	</div>
@@ -108,17 +101,11 @@ const cards = [
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
 	
+	<div class="u--pt-10">
+	</div>
 
-	
+
+
 
 </Layout>
