@@ -39,6 +39,7 @@ import gsap from 'gsap';
 class Project{
     constructor(){
         this.DOM = {
+            preloader: document.querySelector('.c--preloader-a'), // Preloader reference in constructor
             images : document.querySelectorAll("img"),
         };
         this.debug = false; // Set to true to enable debug mode
@@ -65,27 +66,32 @@ class Project{
             console.error("Error during project initialization:", error);
         }
         finally {
-
+            
             var tl = gsap.timeline({
                 onUpdate: async () => {
                     // //* Check if the animation is at least 50% complete and the function hasn't been executed yet
                     if (tl.progress() >= 0.5 && !this.halfwayExecuted) {
                       this.halfwayExecuted = true;
                       const { default: Main } = await import("@js/Main.js");
+                      const { default: LoadMore } = await import("@js/modules/LoadMore.js");
+                      const { default: UrlValidator } = await import("@js/modules/UrlValidator.js");
                       new Main({
                         boostify: this.boostify,
                         debug: this.terraDebug,
                       });
-          
+                      new LoadMore({});
+                      new UrlValidator({});
                     }
                 },
+                onComplete: () => {
+                   this.DOM.preloader.remove(); //Remove preloader from the DOM when completed
+                }
             });
-            tl.to('.c--preloader-a',{
+            tl.to(this.DOM.preloader,{
                 delay:0.5,
                 opacity:0,
                 duration:0.5,
             })
-     
         }
     }
 }
